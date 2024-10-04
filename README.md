@@ -1,3 +1,11 @@
+# This project was a practice app created with the help of the tutorials
+
+You can find the tutorials in LinkedIn Learning. 
+
+The code is found from https://github.com/LinkedInLearning/react-creating-and-hosting-a-full-stack-site-3209140/blob/01_05e/src/pages/NotFoundPage.js
+
+This is not an absolute copy, but pretty close to the original. It's just for practice after all.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
