@@ -1,6 +1,9 @@
 const AboutPage = () => {
     return (
-        <h1>This is the about page!</h1>
+        <>
+        <h1>Welcome to the about page!</h1>
+        <p>Nothing much to see here yet.</p>
+        </>    
     );
 }
 
