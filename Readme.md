@@ -1,25 +1,7 @@
-# This is the backend of the app
+# This project is a practice project:
 
-## Install dependencies
+Frontend is a React app 
 
-Go to the folder of this project called `backend`
+Backend is Express
 
-Then run `npm i`
-
-## To run the backend locally
-
-Go to the folder of this project called `backend/src`
-
-Run `node server.js`
-
-Localhost will be listening on port 8000
-
-## To run the backend automatically during development
-
-Go to the folder of this project called `backend`
-
-Run `npm run dev`
-
-This will allow you to make code changes to the backend and they will come into effect immediately.
-
-## Next 
+Persistence is with MongoDB
