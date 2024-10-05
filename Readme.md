@@ -18,8 +18,8 @@ Localhost will be listening on port 8000
 
 Go to the folder of this project called `backend`
 
-Run `npx nodemon server.js`
+Run `npm run dev`
 
-This will allow you to make code changes and they will come into effect immediately.
+This will allow you to make code changes to the backend and they will come into effect immediately.
 
 ## Next 
