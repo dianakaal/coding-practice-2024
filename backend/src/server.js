@@ -1,5 +1,5 @@
 import express from 'express'
-import { MongoClient } from 'mongodb'
+import { db, connectToDb} from './db.js'
 
 
 const app = express()
@@ -63,10 +63,6 @@ app.post('/api/articles/:name/comments', (req, res) => {
 app.get('/api/articles/:name', async (req, res) => {
   const {name} = req.params
 
-  const client = new MongoClient('mongodb://127.0.0.1:27017')
-  await client.connect()
-
-  const db = client.db('react-blog-db')
 
   const article = await db.collection('articles').findOne({ name })
   if (article) {
@@ -80,10 +76,7 @@ app.get('/api/articles/:name', async (req, res) => {
 app.put('/api/articles/:name/upvote', async (req, res) => {
   const { name } = req.params
   
-  const client = new MongoClient('mongodb://127.0.0.1:27017')
-  await client.connect()
 
-  const db = client.db('react-blog-db')
 
   await db.collection('articles').updateOne({ name }, {
     $inc: { upvotes: 1},
@@ -103,10 +96,7 @@ app.post('/api/articles/:name/comments', async (req, res) => {
   const { name } = req.params
   const { postedBy, text } = req.body
 
-  const client = new MongoClient('mongodb://127.0.0.1:27017')
-  await client.connect()
 
-  const db = client.db('react-blog-db')
 
   await db.collection('articles').updateOne({name},{
     $push: {comments: { postedBy, text }},
@@ -121,6 +111,9 @@ app.post('/api/articles/:name/comments', async (req, res) => {
   }
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+connectToDb(() => {
+  console.log('Successfully connected to the database!')
+  app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+  })
 })
