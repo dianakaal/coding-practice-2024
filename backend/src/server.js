@@ -86,7 +86,7 @@ app.put('/api/articles/:name/upvote', async (req, res) => {
   const db = client.db('react-blog-db')
 
   await db.collection('articles').updateOne({ name }, {
-    $inc: { upvotes: 1}
+    $inc: { upvotes: 1},
    })
 
   const article = await await db.collection('articles').findOne({ name })
@@ -109,7 +109,7 @@ app.post('/api/articles/:name/comments', async (req, res) => {
   const db = client.db('react-blog-db')
 
   await db.collection('articles').updateOne({name},{
-    $push: {comments: { postedBy, text }}
+    $push: {comments: { postedBy, text }},
   })
   
   const article = await db.collection('articles').findOne({ name })
