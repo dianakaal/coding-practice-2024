@@ -22,4 +22,9 @@ Run `npm run dev`
 
 This will allow you to make code changes to the backend and they will come into effect immediately.
 
-## Next 
+## To run MongoDB locally
+
+Go to the folder of this project called `backend`
+
+Run `mongod --dbpath ./database-data/`
+
