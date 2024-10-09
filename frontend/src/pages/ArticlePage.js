@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios'
 import articles from './article-content';
 import NotFoundPage from './NotFoundPage';
+import CommentsList from '../components/CommentsList'
 
 const ArticlePage = () => {
 
@@ -38,14 +39,7 @@ const ArticlePage = () => {
         </p>
         <p>This article has {articleInfo.upvotes} upvote(s).</p>
         <br />
-        <p><strong>Comments:</strong>
-            {articleInfo.comments.map((comment, index) => (
-                <div key={index}>
-                    <p><strong>Posted By:</strong> {comment.postedBy}</p>
-                    <p><strong>Comment:</strong> {comment.text}</p>
-                </div>
-            ))}
-        </p>
+        <CommentsList comments={articleInfo.comments} />
         </>
     );
 }
