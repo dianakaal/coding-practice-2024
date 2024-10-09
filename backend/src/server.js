@@ -84,12 +84,15 @@ app.put('/api/articles/:name/upvote', async (req, res) => {
 
   const article = await db.collection('articles').findOne({ name })
 
-  if (!article) {
-    res.status(404).send('That article does not exist.');
+  if (article) {
+    // have server respond with an updated article instead of a message
+    res.json(article)
+  } else {
+    res.send('Oops, that article does not exist.');
   }
   
-  //res.json(article)
-  res.send(`The ${article.name} article now has ${article.upvotes} upvotes!`)
+  // old way of responding about an upvote
+  //res.send(`The ${article.name} article now has ${article.upvotes} upvotes!`)
 })
 
 // adding comments to articles endpoint
