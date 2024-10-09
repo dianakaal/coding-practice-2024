@@ -54,7 +54,7 @@ const ArticlePage = () => {
         </div>
         <br />
         <AddCommentForm
-            articleName={articleId}
+            articleName={articleId.articleId}
             onArticleUpdated={updatedArticle => {setArticleInfo(updatedArticle)}}
         />
         <CommentsList comments={articleInfo.comments} />
