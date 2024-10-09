@@ -39,10 +39,9 @@ app.use(async (req, res, next) => {
     } catch (e) {
       res.sendStatus(400)
     }
-  } 
+  }
 
   next()
-  
 })
 
 app.get('/', (req, res) => {
