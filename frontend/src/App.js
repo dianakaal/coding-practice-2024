@@ -27,7 +27,3 @@ function App() {
 }
 
 export default App;
-
-axios.get('http://localhost:8000/api/articles/learn-react')
-
-//HELLOOOOOOO
