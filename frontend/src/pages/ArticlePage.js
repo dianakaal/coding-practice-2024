@@ -41,11 +41,10 @@ const ArticlePage = () => {
     return (
         <>
         <h1>{article.title}</h1>
-        <p>This is the content of the article, not yet sourced from a database.
+        <p>This is the content of the article, not yet sourced from a database.</p>
         {article.content.map((paragraph, i) => (
             <p key={i}>{paragraph}</p>
         ))}
-        </p>
         <div className="upvotes-section">
             <button onClick={addUpvote}>Please vote for me!</button>
             <br />
