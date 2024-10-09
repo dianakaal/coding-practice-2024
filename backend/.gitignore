@@ -3,3 +3,6 @@ node_modules/
 
 # ignore the database's internal files
 database-data/*
+
+# Keep the database-data folder for future reference
+!database-data/
