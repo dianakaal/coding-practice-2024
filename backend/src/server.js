@@ -100,8 +100,6 @@ app.post('/api/articles/:name/comments', async (req, res) => {
   const { name } = req.params
   const { postedBy, text } = req.body
 
-
-
   await db.collection('articles').updateOne({name},{
     $push: {comments: { postedBy, text }},
   })
