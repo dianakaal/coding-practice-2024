@@ -30,6 +30,21 @@ let articlesInfo = [{
 
 app.use(express.json())
 
+app.use(async (req, res, next) => {
+  const { authToken } = req.headers
+
+  if (authToken) {
+    try {
+      req.user = await admin.auth().verifyIdToken(authToken)
+    } catch (e) {
+      res.sendStatus(400)
+    }
+  } 
+
+  next()
+  
+})
+
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
