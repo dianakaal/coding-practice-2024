@@ -24,6 +24,12 @@ This will allow you to make code changes to the backend and they will come into 
 
 ## To run MongoDB locally
 
+Create a folder called `database-data` inside the backend folder
+
+This is where Mongo will save files necessary for running it.
+
+This folder will be gitignored.
+
 ### using the original command
 
 Go to the folder of this project called `backend`
