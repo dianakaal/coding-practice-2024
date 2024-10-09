@@ -24,7 +24,16 @@ This will allow you to make code changes to the backend and they will come into 
 
 ## To run MongoDB locally
 
+### using the original command
+
 Go to the folder of this project called `backend`
 
 Run `mongod --dbpath ./database-data/`
+
+### using custom command
+
+Go to the folder of this project called `backend`
+
+Run `npm run mongo`
+
 
