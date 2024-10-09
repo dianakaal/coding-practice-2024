@@ -4,6 +4,7 @@ import axios from 'axios'
 import NotFoundPage from './NotFoundPage';
 import CommentsList from '../components/CommentsList'
 import AddCommentForm from '../components/AddCommentForm';
+import useUser from '../hooks/useUser'
 import articles from './article-content';
 
 
@@ -13,6 +14,8 @@ const ArticlePage = () => {
     const articleId = useParams()
     //const articleId = articleIdObject.articleId
     console.log("article id is: ", articleId)
+
+    const { user, isLoading } = useUser
 
     
     useEffect(() => {
@@ -48,15 +51,20 @@ const ArticlePage = () => {
             <p key={i}>{paragraph}</p>
         ))}
         <div className="upvotes-section">
-            <button onClick={addUpvote}>Please vote for me!</button>
+            {user
+                ? <button onClick={addUpvote}>Please vote for me!</button>
+                : <button>You have to login to be able to vote on an article!</button>
+            }
             <br />
-            <p>This article now has {articleInfo.upvotes} upvote(s).</p>
+            <p>This article has {articleInfo.upvotes} upvote(s) already.</p>
         </div>
         <br />
-        <AddCommentForm
+        {user
+            ? <AddCommentForm
             articleName={articleId.articleId}
-            onArticleUpdated={updatedArticle => {setArticleInfo(updatedArticle)}}
-        />
+            onArticleUpdated={updatedArticle => {setArticleInfo(updatedArticle)}}/>
+            : <button>Please log in to add a comment</button>
+        }
         <CommentsList comments={articleInfo.comments} />
         </>
     );
