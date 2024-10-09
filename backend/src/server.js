@@ -74,22 +74,21 @@ app.get('/api/articles/:name', async (req, res) => {
   }
 })
 
-// upvote endpoing
+// upvote endpoint
 app.put('/api/articles/:name/upvote', async (req, res) => {
   const { name } = req.params
   
-
-
   await db.collection('articles').updateOne({ name }, {
     $inc: { upvotes: 1},
    })
 
-  const article = await await db.collection('articles').findOne({ name })
+  const article = await db.collection('articles').findOne({ name })
 
   if (!article) {
     res.status(404).send('That article does not exist.');
   }
   
+  //res.json(article)
   res.send(`The ${article.name} article now has ${article.upvotes} upvotes!`)
 })
 

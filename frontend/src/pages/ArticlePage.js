@@ -9,6 +9,7 @@ const ArticlePage = () => {
 
     const [articleInfo, setArticleInfo] = useState({ upvotes: 0, comments: []})
     const articleId = useParams()
+    //const articleId = articleIdObject.articleId
     console.log("article id is: ", articleId)
 
     
@@ -23,7 +24,15 @@ const ArticlePage = () => {
         loadArticleInfo()        
     }, [])
 
+    const addUpvote = async () => {
+        const response = await axios.put(`/api/articles/${articleId.articleId}/upvote`)
+        const upvotedArticle = response.data
+        setArticleInfo(upvotedArticle)
+    }    
+
     const article = articles.find(article => article.name === articleId.articleId);
+
+
 
     if (!article) {
         return <NotFoundPage />
@@ -37,7 +46,11 @@ const ArticlePage = () => {
             <p key={i}>{paragraph}</p>
         ))}
         </p>
-        <p>This article has {articleInfo.upvotes} upvote(s).</p>
+        <div className="upvotes-section">
+            <button onClick={addUpvote}>Please vote for me!</button>
+            <br />
+            <p>This article now has {articleInfo.upvotes} upvote(s).</p>
+        </div>
         <br />
         <CommentsList comments={articleInfo.comments} />
         </>
