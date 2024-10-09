@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import articles from './article-content';
 import NotFoundPage from './NotFoundPage';
@@ -6,7 +6,10 @@ import NotFoundPage from './NotFoundPage';
 const ArticlePage = () => {
 
     const [articleInfo, setArticleInfo] = useState({ upvotes: 0, comments: []})
-
+    
+    useEffect(() => {
+       setArticleInfo({ upvotes: 1, comments: ["One comment."]}) 
+    })
 
     const { articleId } = useParams();
     const article = articles.find(article => article.name === articleId);
@@ -18,6 +21,9 @@ const ArticlePage = () => {
     return (
         <>
         <h1>{article.title}</h1>
+        <p>This article has {articleInfo.upvotes} upvote(s).</p>
+        <br />
+        <p>The article has this comment: {articleInfo.comments[0]}</p>
         {article.content.map((paragraph, i) => (
             <p key={i}>{paragraph}</p>
         ))}
