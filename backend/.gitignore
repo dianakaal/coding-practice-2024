@@ -6,3 +6,6 @@ database-data/*
 
 # Keep the database-data folder for future reference
 !database-data/
+
+# do not commit admin level credentials
+credentials.json
