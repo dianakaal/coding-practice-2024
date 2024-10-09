@@ -48,7 +48,7 @@ const articles = [
             consequat quam. Vivamus accumsan dui in facilisis aliquet.`,
         ]
     },     {
-        name: 'mongodb',
+        name: 'learn-mongodb',
         title: 'Learn MongoDB',
         content: [
             `Today is the day I talk about something which scares most people: resumes.
