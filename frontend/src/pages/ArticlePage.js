@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
-import articles from './article-content';
 import NotFoundPage from './NotFoundPage';
 import CommentsList from '../components/CommentsList'
+import AddCommentForm from '../components/AddCommentForm';
+import articles from './article-content';
+
 
 const ArticlePage = () => {
 
@@ -51,6 +53,10 @@ const ArticlePage = () => {
             <p>This article now has {articleInfo.upvotes} upvote(s).</p>
         </div>
         <br />
+        <AddCommentForm
+            articleName={articleId}
+            onArticleUpdated={updatedArticle => {setArticleInfo(updatedArticle)}}
+        />
         <CommentsList comments={articleInfo.comments} />
         </>
     );
