@@ -1,10 +1,23 @@
 import { useState } from 'react'
-import { Link} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 
 const LoginPage = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
+
+    const navigate = useNavigate()
+
+
+    const logIn = async () => { 
+        try {
+            await signInWithEmailAndPassword(getAuth(), email, password)
+            navigate('/articles')
+        } catch (e) {
+            setError(e.message)
+        }
+    }
 
     return (
         <>
@@ -18,11 +31,11 @@ const LoginPage = () => {
         <input
             type="password"
             placeholder="well thought out password"
-            value={email}
+            value={password}
             onChange={e => setPassword(e.target.value)}
         />
-        <button>Log in</button>
-        <Link to="/create-account">If you don't have an account, go ahead and create on here.</Link>
+        <button onClick={logIn}>Log in</button>
+        <Link to="/create-account" style={{ display: 'block', marginTop: '20px' }}>If you don't have an account, go ahead and create on here.</Link>
         </>
     )
 }
