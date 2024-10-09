@@ -35,7 +35,7 @@ app.get('/hello/:name/bye/:otherName', (req, res) => {
 })
 
 // upvote endpoint without a db
-app.put('/api/articles/:name/upvote', (req, res) => {
+app.put('/api/non-db/articles/:name/upvote', (req, res) => {
   const { name } = req.params
   const article = articlesInfo.find(a => a.name && a.name === name)
   if (!article) {
@@ -46,7 +46,7 @@ app.put('/api/articles/:name/upvote', (req, res) => {
 })
 
 // endpoint for adding comments to articles
-app.post('/api/articles/:name/comments', (req, res) => {
+app.post('/api/non-db/articles/:name/comments', (req, res) => {
   const { name } = req.params
   const { postedBy, text } = req.body
 
@@ -59,12 +59,14 @@ app.post('/api/articles/:name/comments', (req, res) => {
   }
 })
 
-// use Mongodb to load information about a given article
+// APIs which use MongoDb
+
+// load information about a given article
 app.get('/api/articles/:name', async (req, res) => {
   const {name} = req.params
 
-
   const article = await db.collection('articles').findOne({ name })
+
   if (article) {
     res.json(article)
   } else {
@@ -72,7 +74,7 @@ app.get('/api/articles/:name', async (req, res) => {
   }
 })
 
-// upvote endpoing using Mongodb
+// upvote endpoing
 app.put('/api/articles/:name/upvote', async (req, res) => {
   const { name } = req.params
   
@@ -91,7 +93,7 @@ app.put('/api/articles/:name/upvote', async (req, res) => {
   res.send(`The ${article.name} article now has ${article.upvotes} upvotes!`)
 })
 
-// adding comments to articles endpoint using MongoDB
+// adding comments to articles endpoint
 app.post('/api/articles/:name/comments', async (req, res) => {
   const { name } = req.params
   const { postedBy, text } = req.body
