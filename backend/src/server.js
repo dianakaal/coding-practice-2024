@@ -100,25 +100,38 @@ app.get('/api/articles/:name', async (req, res) => {
   }
 })
 
+app.use((req, res, next) => {
+  if (req.user) {
+    next()
+  } else {
+    res.sendStatus(401)
+  }
+})
+
 // upvote endpoint
 app.put('/api/articles/:name/upvote', async (req, res) => {
   const { name } = req.params
-  
-  await db.collection('articles').updateOne({ name }, {
-    $inc: { upvotes: 1},
-   })
+  const { uid } = req.user
 
   const article = await db.collection('articles').findOne({ name })
 
   if (article) {
+    const upvoteIdsOfArticles = article.upvoteIds || []
+    article.canUpvote = uid && !upvoteIdsOfArticles.include(uid)
+
+    if (canUpvote) {
+      await db.collection('articles').updateOne({ name }, {
+        $inc: { upvotes: 1},
+        $push: { upvoteIds: uid },
+       })
+    }
+    const updatedArticle = await db.collection('articles').findOne({ name })
+
     // have server respond with an updated article instead of a message
-    res.json(article)
+    res.json(updatedArticle)
   } else {
-    res.send('Oops, that article does not exist.');
+    res.send('That article does not exist')
   }
-  
-  // old way of responding about an upvote
-  //res.send(`The ${article.name} article now has ${article.upvotes} upvotes!`)
 })
 
 // adding comments to articles endpoint
