@@ -87,10 +87,13 @@ app.post('/api/non-db/articles/:name/comments', (req, res) => {
 // load information about a given article
 app.get('/api/articles/:name', async (req, res) => {
   const {name} = req.params
+  const { uid } = req.user
 
   const article = await db.collection('articles').findOne({ name })
 
   if (article) {
+    const upvoteIdsOfArticles = article.upvoteIds || []
+    article.canUpvote = uid && !upvoteIdsOfArticles.include(uid)
     res.json(article)
   } else {
     res.sendStatus(404)
