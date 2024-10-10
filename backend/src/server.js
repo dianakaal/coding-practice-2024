@@ -117,13 +117,16 @@ app.post('/api/non-db/articles/:name/comments', (req, res) => {
 })
 
 // endpoint for fetching articles
-app.get('/articles', (req, res) => {
-  res.json({ message: 'Protected articles data' });
+app.get('/articles', (res) => {
+  const articles = articlesInfo.find({}).toArray()
+  if(articles.length > 0) {
+    res.send(articles)
+  } else {
+    res.send('No articles to show')
+  }
 });
 
-// APIs which use MongoDb
-
-// load information about a given article
+// load information about a given article from MongoDB
 app.get('/api/articles/:name', async (req, res) => {
   const {name} = req.params
   const { uid } = req.user
@@ -147,33 +150,41 @@ app.use((req, res, next) => {
   }
 })
 
-// upvote endpoint
+// upvote endpoint using MongoDB
 app.put('/api/articles/:name/upvote', async (req, res) => {
   const { name } = req.params
   const { uid } = req.user
 
-  const article = await db.collection('articles').findOne({ name })
 
-  if (article) {
+  try {
+    const article = await db.collection('articles').findOne({ name })
+
     const upvoteIdsOfArticles = article.upvoteIds || []
-    article.canUpvote = uid && !upvoteIdsOfArticles.includes(uid)
+    const canUpvote = uid && !upvoteIdsOfArticles.includes(uid)
 
     if (canUpvote) {
-      await db.collection('articles').updateOne({ name }, {
-        $inc: { upvotes: 1},
-        $push: { upvoteIds: uid },
-       })
-    }
-    const updatedArticle = await db.collection('articles').findOne({ name })
+      await db.collection('articles').updateOne(
+        { name },
+        {
+          $inc: { upvotes: 1},
+          $push: { upvoteIds: uid },
+        },
+      )
 
+    const updatedArticle = await db.collection('articles').findOne({ name })
+  
     // have server respond with an updated article instead of a message
     res.json(updatedArticle)
-  } else {
-    res.send('That article does not exist')
+    } else {
+      res.status(404).send('That article does not exist')
   }
+ } catch (error) {
+  console.error('Error upvoting article:', error);
+    res.status(500).send('Internal Server Error');
+ }
 })
 
-// adding comments to articles endpoint
+// adding comments to articles endpoint using MongoDB
 app.post('/api/articles/:name/comments', async (req, res) => {
   const { name } = req.params
   const { text } = req.body
