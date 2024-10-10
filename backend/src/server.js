@@ -37,9 +37,12 @@ app.use(async (req, res, next) => {
     try {
       req.user = await admin.auth().verifyIdToken(authToken)
     } catch (e) {
-      res.sendStatus(400)
+      return res.sendStatus(400)
     }
   }
+
+  // if the user is not logged in, below allows them to browser articles anyhow
+  req.user = req.user || {}
 
   next()
 })
