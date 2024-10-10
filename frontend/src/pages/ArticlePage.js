@@ -10,7 +10,8 @@ import articles from './article-content';
 
 const ArticlePage = () => {
 
-    const [articleInfo, setArticleInfo] = useState({ upvotes: 0, comments: []})
+    const [articleInfo, setArticleInfo] = useState({ upvotes: 0, comments: [], canUpvote: false})
+    const { canUpvote } = articleInfo
     const articleId = useParams()
     //const articleId = articleIdObject.articleId
     console.log("article id is: ", articleId)
@@ -28,8 +29,10 @@ const ArticlePage = () => {
                 setArticleInfo(receivedArticleInfo) 
             }
 
-        loadArticleInfo()        
-    }, [articleId, user])
+        if (isLoading) {
+            loadArticleInfo() 
+        }       
+    }, [isLoading, user])
 
     const addUpvote = async () => {
         const token = user && await user.getIdToken()
@@ -56,12 +59,19 @@ const ArticlePage = () => {
         ))}
         <div className="upvotes-section">
             {user
-                ? <button onClick={addUpvote}>Please vote for me!</button>
+                ? <button onClick={addUpvote}>
+                    { canUpvote ?
+                        <span>Please vote for me!</span>
+                        :
+                        <span>You already upvoted</span>
+                    }
+                </button>
                 : <button>You have to login to be able to vote on an article!</button>
             }
             <br />
             <p>This article has {articleInfo.upvotes} upvote(s) already.</p>
         </div>
+
         <br />
         {user
             ? <AddCommentForm
