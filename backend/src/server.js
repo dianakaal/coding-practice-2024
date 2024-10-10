@@ -96,7 +96,7 @@ app.get('/api/articles/:name', async (req, res) => {
 
   if (article) {
     const upvoteIdsOfArticles = article.upvoteIds || []
-    article.canUpvote = uid && !upvoteIdsOfArticles.include(uid)
+    article.canUpvote = uid && !upvoteIdsOfArticles.includes(uid)
     res.json(article)
   } else {
     res.sendStatus(404)
@@ -120,7 +120,7 @@ app.put('/api/articles/:name/upvote', async (req, res) => {
 
   if (article) {
     const upvoteIdsOfArticles = article.upvoteIds || []
-    article.canUpvote = uid && !upvoteIdsOfArticles.include(uid)
+    article.canUpvote = uid && !upvoteIdsOfArticles.includes(uid)
 
     if (canUpvote) {
       await db.collection('articles').updateOne({ name }, {
