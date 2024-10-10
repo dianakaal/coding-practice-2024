@@ -34,15 +34,20 @@ app.use(async (req, res, next) => {
   const { authToken } = req.headers
 
   if (authToken) {
+    console.log("Got an authToken")
     try {
       req.user = await admin.auth().verifyIdToken(authToken)
+      console.log("Verified the token with answer: ", req.user)
     } catch (e) {
+      console.log("Caught an error: ", e)
       return res.sendStatus(400)
     }
   }
 
   // if the user is not logged in, below allows them to browser articles anyhow
   req.user = req.user || {}
+
+  console.log("If this is an empty object then the user is not logged in: ", req.user)
 
   next()
 })
