@@ -3,6 +3,7 @@ import { db, connectToDb} from './db.js'
 import fs from 'fs'
 import admin from 'firebase-admin'
 import path from 'path'
+import 'dotenv/config'
 
 // reacreating __dirname when the type is not equal to module
 import { fileURLToPath } from 'url'
@@ -204,6 +205,7 @@ app.post('/api/articles/:name/comments', async (req, res) => {
 
 // tell server which port to listen to based on environment variable from hosting platform or locally
 const PORT = process.env.PORT || 8000
+console.log('The PORT value is: ',PORT)
 
 connectToDb(() => {
   console.log('Successfully connected to the database!')
