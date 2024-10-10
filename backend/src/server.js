@@ -30,8 +30,9 @@ let articlesInfo = [{
 
 app.use(express.json())
 
-app.use(async (req, res, next) => {
-  const { authToken } = req.headers
+/*app.use(async (req, res, next) => {
+  const authToken = req.headers.authorization; // Use authorization header with Bearer token pattern
+  console.log("The request headers were: ", req.headers)
 
   if (authToken) {
     console.log("Got an authToken")
@@ -50,7 +51,32 @@ app.use(async (req, res, next) => {
   console.log("If this is an empty object then the user is not logged in: ", req.user)
 
   next()
-})
+})*/
+
+app.use(async (req, res, next) => {
+  const authToken = req.headers.authorization; // Use authorization header with Bearer token pattern
+  console.log("The request headers were: ", req.headers);
+
+  if (authToken && authToken.startsWith("Bearer ")) {
+    const token = authToken.split("Bearer ")[1]; // Extract the token part after 'Bearer '
+    console.log("Got an authToken:", token);
+
+    try {
+      req.user = await admin.auth().verifyIdToken(token); // Verify the token
+      console.log("Verified the token with answer: ", req.user);
+    } catch (e) {
+      console.log("Caught an error: ", e);
+      return res.sendStatus(400);
+    }
+  }
+
+  // If the user is not logged in, allow them to browse anonymously
+  req.user = req.user || {};
+  console.log("If this is an empty object then the user is not logged in: ", req.user);
+
+  next();
+});
+
 
 app.get('/', (req, res) => {
   res.send('Hello World!')

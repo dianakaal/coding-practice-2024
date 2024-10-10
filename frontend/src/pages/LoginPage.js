@@ -12,7 +12,8 @@ const LoginPage = () => {
 
     const logIn = async () => { 
         try {
-            await signInWithEmailAndPassword(getAuth(), email, password)
+            const authenticated = await signInWithEmailAndPassword(getAuth(), email, password)
+            console.log("Result of logging in: ", authenticated)
             navigate('/articles')
         } catch (e) {
             setError(e.message)
