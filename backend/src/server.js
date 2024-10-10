@@ -30,6 +30,9 @@ let articlesInfo = [{
 
 app.use(express.json())
 
+// below lets the Node server serve provided files statically
+app.use(express.static(path.join(__dirname, '../build')))
+
 /*app.use(async (req, res, next) => {
   const authToken = req.headers.authorization; // Use authorization header with Bearer token pattern
   console.log("The request headers were: ", req.headers)
