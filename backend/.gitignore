@@ -12,3 +12,5 @@ credentials.json
 
 # ignore the build folder which was built for the frontend
 build
+
+# ignore the env file
