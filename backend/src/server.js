@@ -116,6 +116,11 @@ app.post('/api/non-db/articles/:name/comments', (req, res) => {
   }
 })
 
+// endpoint for fetching articles
+app.get('/articles', (req, res) => {
+  res.json({ message: 'Protected articles data' });
+});
+
 // APIs which use MongoDb
 
 // load information about a given article

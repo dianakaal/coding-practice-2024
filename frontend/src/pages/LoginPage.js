@@ -9,16 +9,39 @@ const LoginPage = () => {
 
     const navigate = useNavigate()
 
-
     const logIn = async () => { 
         try {
+            // Authenticate with Firebase
             const authenticated = await signInWithEmailAndPassword(getAuth(), email, password)
             console.log("Result of logging in: ", authenticated)
-            navigate('/articles')
+            
+            // Get the ID token for the authenticated user
+            const idToken = await authenticated.user.getIdToken()
+            console.log("ID Token: ", idToken)
+            
+            // Example of sending a request with the token (for protected routes or any backend interaction)
+            const response = await fetch('/articles', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${idToken}`
+                }
+            })
+            
+            if (response.ok) {
+                navigate('/articles') // Navigate to the articles page
+            } else {
+                const errorMessage = await response.text(); // Get error message from server if any
+                console.log('Error from backend: ', errorMessage);
+                setError('Failed to fetch protected resource: ' + errorMessage);
+            }
+    
         } catch (e) {
             setError(e.message)
         }
     }
+    
+
+
 
     return (
         <>
