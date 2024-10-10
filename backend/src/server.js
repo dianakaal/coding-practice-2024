@@ -19,20 +19,6 @@ admin.initializeApp({
 
 const app = express()
 
-let articlesInfo = [{
-  name: 'learn-node',
-  upvotes: 0,
-  comments: [],
-},{
-  name: 'learn-mongodb',
-  upvotes: 0,
-  comments: [],
-},{
-  name: 'learn-react',
-  upvotes: 0,
-  comments: [],
-}]
-
 app.use(express.json())
 
 // below lets the Node server serve provided files statically
