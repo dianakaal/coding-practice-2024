@@ -7,7 +7,7 @@ import path from 'path'
 // reacreating __dirname when the type is not equal to module
 import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
-const __dirmame = path.dirname(__filename)
+const __dirname = path.dirname(__filename)
 
 const credentials = JSON.parse(
   fs.readFileSync('./credentials.json')
