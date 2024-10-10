@@ -62,6 +62,11 @@ app.use(express.static(path.join(__dirname, '../build')))
   next()
 })*/
 
+// handle any requests that do not stat with "/api"
+app.get(/^(?!\/api).+/, (req, res) => {
+  res.sendFile(path.join(__dirname, '../build/index.html'))
+})
+
 app.use(async (req, res, next) => {
   const authToken = req.headers.authorization; // Use authorization header with Bearer token pattern
   console.log("The request headers were: ", req.headers);
