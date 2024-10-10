@@ -29,7 +29,7 @@ const ArticlePage = () => {
                 setArticleInfo(receivedArticleInfo) 
             }
 
-        if (isLoading) {
+        if (!isLoading) {
             loadArticleInfo() 
         }       
     }, [isLoading, user])
