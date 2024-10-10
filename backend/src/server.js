@@ -18,7 +18,6 @@ admin.initializeApp({
 
 
 const app = express()
-const port = 8000
 
 let articlesInfo = [{
   name: 'learn-node',
@@ -217,9 +216,12 @@ app.post('/api/articles/:name/comments', async (req, res) => {
   }
 })
 
+// tell server which port to listen to based on environment variable from hosting platform or locally
+const PORT = process.env.PORT || 8000
+
 connectToDb(() => {
   console.log('Successfully connected to the database!')
-  app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+  app.listen(PORT, () => {
+    console.log(`Example app listening on port ${PORT}`)
   })
 })
