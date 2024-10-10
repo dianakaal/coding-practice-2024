@@ -20,17 +20,21 @@ const ArticlePage = () => {
     
     useEffect(() => {
             const loadArticleInfo = async() => {
-                const response = await axios.get(`/api/articles/${articleId.articleId}`)
+                const token = user && await user.getIdToken()
+                const headers = token ? { authToken: token } : {}
+                const response = await axios.get(`/api/articles/${articleId.articleId}`, { headers })
                 const receivedArticleInfo = response.data
                 console.log("The receivedArticleInfo is: ", receivedArticleInfo)
                 setArticleInfo(receivedArticleInfo) 
             }
 
         loadArticleInfo()        
-    }, [])
+    }, [articleId, user])
 
     const addUpvote = async () => {
-        const response = await axios.put(`/api/articles/${articleId.articleId}/upvote`)
+        const token = user && await user.getIdToken()
+        const headers = token ? { authToken: token } : {}
+        const response = await axios.put(`/api/articles/${articleId.articleId}/upvote`, null, { headers })
         const upvotedArticle = response.data
         setArticleInfo(upvotedArticle)
     }    
