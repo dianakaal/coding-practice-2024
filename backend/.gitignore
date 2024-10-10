@@ -9,3 +9,6 @@ database-data/*
 
 # do not commit admin level credentials
 credentials.json
+
+# ignore the build folder which was built for the frontend
+build
