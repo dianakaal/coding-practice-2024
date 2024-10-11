@@ -15,11 +15,12 @@ Be aware that a few things have changed in Firebase, React, and Node so a few up
 
 ## This project's main features:
 
-Frontend is a React app 
+Frontend application using React 
 
-Backend is Express
+Server with Node.js and Express
 
-Persistence is with MongoDB
+Persistence of data is with MongoDB
 
 Authentication is done with Firebase
 
+Possibility to deploy to Google Cloud
