@@ -30,8 +30,13 @@ Authentication is done with Firebase
 3. Allow new users to save their names.
 4. When user posts a comment include their name with the post. Exactly like it's done via direct API call.
 5. Store the contents of each article in the database.
-6.
-7.
+6. Remove comments used for debugging authentication.
+7. Opening an article page has an error, which can be removed, but should not be there.
+8. There is an error when commenting upon an article.
+9.
+10.
+11.
+12.
 
 
 
