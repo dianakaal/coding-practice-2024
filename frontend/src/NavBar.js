@@ -9,7 +9,7 @@ const NavBar = () => {
     const handleLogout = async () => {
         try {
            await signOut(getAuth());
-           navigate('/articles');
+           navigate('/');
         } catch (error) {
            console.error("An error occurred while signing out:", error);
         }
