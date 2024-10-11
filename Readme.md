@@ -23,4 +23,16 @@ Persistence of data is with MongoDB
 
 Authentication is done with Firebase
 
-Possibility to deploy to Google Cloud
+# List of improvements for the future
+
+1. Possibility to deploy to Google Cloud. The app was deployed, however saving the configuration files into Git is questionable therefore none of them are saved. Some of them should be saved for future reference.
+2. Set up the "database-data" directory apart from the repository. Now there are too many untracked chages which annoy me.
+3. Allow new users to save their names.
+4. When user posts a comment include their name with the post. Exactly like it's done via direct API call.
+5. Store the contents of each article in the database.
+6.
+7.
+
+
+
+
