@@ -20,20 +20,6 @@ admin.initializeApp({
 
 const app = express()
 
-let articlesInfo = [{
-  name: 'learn-first',
-  upvotes: 0,
-  comments: [],
-},{
-  name: 'learn-second',
-  upvotes: 0,
-  comments: [],
-},{
-  name: 'learn-third',
-  upvotes: 0,
-  comments: [],
-}]
-
 app.use(express.json())
 
 // below lets the Node server serve provided files statically
