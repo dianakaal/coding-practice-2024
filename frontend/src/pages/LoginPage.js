@@ -12,18 +12,20 @@ const LoginPage = () => {
     const logIn = async () => { 
         try {
             // Authenticate with Firebase
-            const authenticated = await signInWithEmailAndPassword(getAuth(), email, password)
-            console.log("Result of logging in: ", authenticated)
+            const signedIn = await signInWithEmailAndPassword(getAuth(), email, password)
+            console.log("Result of logging in: ", signedIn)
             
             // Get the ID token for the authenticated user
-            const idToken = await authenticated.user.getIdToken()
-            console.log("ID Token: ", idToken)
+            const idToken = await signedIn.user.getIdToken()
+            console.log("ID Token of signed in user: ", idToken)
+
+            console.log('Smth is wrong here, coz the other pages do not understand that a user had signed in.')
             
             // Example of sending a request with the token (for protected routes or any backend interaction)
             const response = await fetch('/articles', {
                 method: 'GET',
                 headers: {
-                    'Authorization': `Bearer ${idToken}`
+                    'Authorization': `Bearer ${idToken}`//is this correct?
                 }
             })
             
