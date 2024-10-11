@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import axios from 'axios'
-import useUser from '../hooks/useUser'
+import useAuthState from '../hooks/useAuthState'
 
 const AddCommentForm = ({articleName, onArticleUpdated}) => {
     const [name, setName] = useState('')
     const [commentText, setCommentText] = useState('')
-    const { user } = useUser()
+    const { user } = useAuthState()
 
     const addComment = async () => {
         const token = user && await user.getIdToken()

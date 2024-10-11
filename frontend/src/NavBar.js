@@ -1,9 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signOut } from 'firebase/auth'
-import useUser from './hooks/useUser'
+import useAuthState from './hooks/useAuthState'
 
 const NavBar = () => {
-    const user = useUser()
+    const user = useAuthState()
     const navigate = useNavigate
 
     return (
@@ -21,14 +21,18 @@ const NavBar = () => {
             </ul>
             <div className="nav-right">
                 { user ?
-                    <button onClick={() => {
-                        signOut(getAuth())
+                    <button onClick={async () => {
+                        try {
+                            await signOut(getAuth())
+                            
+                        } catch (error) {
+                            console.error("An error occurred while signing out:", error);
+                        }                      
                     }}>Log out</button>
                     : <button onClick={() => {
                         navigate('/login')
                     }}>Log in</button>
                 }
-
             </div>
         </nav>
     );

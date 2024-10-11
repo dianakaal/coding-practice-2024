@@ -4,7 +4,7 @@ import axios from 'axios'
 import NotFoundPage from './NotFoundPage';
 import CommentsList from '../components/CommentsList'
 import AddCommentForm from '../components/AddCommentForm';
-import useUser from '../hooks/useUser'
+import useAuthState from '../hooks/useAuthState'
 import articles from './article-content';
 
 
@@ -16,7 +16,9 @@ const ArticlePage = () => {
     //const articleId = articleIdObject.articleId
     console.log("article id is: ", articleId)
 
-    const { user, isLoading } = useUser
+    const { user, isAuthLoading } = useAuthState()
+
+    console.log("The current user is:", user)
 
     
     useEffect(() => {
@@ -29,10 +31,10 @@ const ArticlePage = () => {
                 setArticleInfo(receivedArticleInfo) 
             }
 
-        if (!isLoading) {
+        if (!isAuthLoading) {
             loadArticleInfo() 
         }       
-    }, [isLoading, user])
+    }, [isAuthLoading, user])
 
     const addUpvote = async () => {
         const token = user && await user.getIdToken()
@@ -43,8 +45,6 @@ const ArticlePage = () => {
     }    
 
     const article = articles.find(article => article.name === articleId.articleId);
-
-
 
     if (!article) {
         return <NotFoundPage />
@@ -58,15 +58,19 @@ const ArticlePage = () => {
             <p key={i}>{paragraph}</p>
         ))}
         <div className="upvotes-section">
-            {user
-                ? <button onClick={addUpvote}>
+            {console.log("Before the upvote button, the user is: ",user)}
+            {
+            user
+                ? 
+                <button onClick={addUpvote}>
                     { canUpvote ?
                         <span>Please vote for me!</span>
                         :
                         <span>You already upvoted</span>
                     }
                 </button>
-                : <button>You have to login to be able to vote on an article!</button>
+                : 
+                <button>You have to login to be able to vote on an article!</button>
             }
             <br />
             <p>This article has {articleInfo.upvotes} upvote(s) already.</p>
