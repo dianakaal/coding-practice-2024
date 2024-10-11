@@ -3,19 +3,19 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 const useUser = () => {
     const [user, setUser] = useState(null)
-    const [isLoading, setIsLoading ] = useState(true)
+    const [isAuthLoading, setIsAuthLoading ] = useState(true)
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(getAuth(), user => {
             setUser(user)
-            setIsLoading(false)
+            setIsAuthLoading(false)
         })
 
         //will be called when user is moved away from the DOM
         return unsubscribe
     }, [])
 
-    return { user, isLoading }
+    return { user, isAuthLoading }
 
 }
 
