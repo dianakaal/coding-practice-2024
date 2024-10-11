@@ -13,4 +13,7 @@ credentials.json
 # ignore the build folder which was built for the frontend
 build
 
-# ignore the env file
+# ignore the files used for Google Cloud
+backend/.gcloudignore
+backend/app.yaml
+backend/prod-env.yaml
