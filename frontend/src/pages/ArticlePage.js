@@ -34,7 +34,7 @@ const ArticlePage = () => {
         if (!isAuthLoading) {
             loadArticleInfo() 
         }       
-    }, [isAuthLoading, user])
+    }, [isAuthLoading, user, articleId])
 
     const addUpvote = async () => {
         const token = user && await user.getIdToken()

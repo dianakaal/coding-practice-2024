@@ -3,8 +3,17 @@ import { getAuth, signOut } from 'firebase/auth'
 import useAuthState from './hooks/useAuthState'
 
 const NavBar = () => {
-    const user = useAuthState()
-    const navigate = useNavigate
+    const { user } = useAuthState()
+    const navigate = useNavigate()
+
+    const handleLogout = async () => {
+        try {
+           await signOut(getAuth());
+           navigate('/articles');
+        } catch (error) {
+           console.error("An error occurred while signing out:", error);
+        }
+     }
 
     return (
         <nav>
@@ -21,17 +30,8 @@ const NavBar = () => {
             </ul>
             <div className="nav-right">
                 { user ?
-                    <button onClick={async () => {
-                        try {
-                            await signOut(getAuth())
-                            
-                        } catch (error) {
-                            console.error("An error occurred while signing out:", error);
-                        }                      
-                    }}>Log out</button>
-                    : <button onClick={() => {
-                        navigate('/login')
-                    }}>Log in</button>
+                    <button onClick={handleLogout}>Log out</button>
+                    : <button onClick={() => {navigate('/login')}}>Log in</button>
                 }
             </div>
         </nav>
