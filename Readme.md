@@ -25,18 +25,13 @@ Authentication is done with Firebase
 
 # List of improvements for the future
 
-1. Possibility to deploy to Google Cloud. The app was deployed, however saving the configuration files into Git is questionable therefore none of them are saved. Some of them should be saved for future reference.
-2. Set up the "database-data" directory apart from the repository. Now there are too many untracked chages which annoy me.
-3. Allow new users to save their names.
-4. When user posts a comment include their name with the post. Exactly like it's done via direct API call.
-5. Store the contents of each article in the database.
-6. Remove comments used for debugging authentication.
-7. Opening an article page has an error, which can be removed, but should not be there.
-8. There is an error when commenting upon an article.
-9. The data from article-content.js should be stored in the database instead of a file.
-10.
-11.
-12.
+- Possibility to deploy to Google Cloud. The app was deployed, however saving the configuration files into Git is questionable therefore none of them are saved. Some of them should be saved for future reference.
+- Allow new users to save their names when creating an account.
+- When user posts a comment include their name with the post.
+- The data from article-content.js should be stored in the database instead of a file. Preferable with Mongoose.
+- Upvoting on an article shows that you already upvoted, then you did not.
+-
+
 
 # Troubleshooting
 
