@@ -31,6 +31,8 @@ Authentication is done with Firebase
 - The data from article-content.js should be stored in the database instead of a file. Preferable with Mongoose.
 - Upvoting on an article shows that you already upvoted, then you did not.
 - Add a "logged out" page
+- Ensure that the token being sent from the frontend is still valid.
+- 
 
 
 # Troubleshooting
