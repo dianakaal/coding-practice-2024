@@ -1,11 +1,8 @@
 node_modules/
 .env
 
-# ignore the database's internal files
-/database-data/*
-
-# Keep the database-data folder for future reference
-!/database-data/
+# ignore the database-data folder 
+database-data/
 
 # do not commit admin level credentials
 credentials.json
