@@ -17,7 +17,6 @@ const AddCommentForm = ({articleName, onArticleUpdated}) => {
             headers,
         })
         const updatedArticle = response.data
-        console.log("Updated article:",updatedArticle)
         onArticleUpdated(updatedArticle)
         setName('')
         setCommentText('')

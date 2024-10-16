@@ -88,10 +88,9 @@ app.get('/articles', (res) => {
 app.get('/api/articles/:name', async (req, res) => {
   const { name } = req.params;
   const { uid } = req.user;
-  console.log("req.user",req.user)
 
   try {
-      const article = await db.collection('articles').findOne({ articleId: name });
+      const article = await db.collection('articles').findOne({ articleId: name })
 
       if (article) {
           const upvoteIdsOfArticles = article.upvoteIds || [];
@@ -112,8 +111,6 @@ app.put('/api/articles/:name/upvote', async (req, res) => {
   const { uid } = req.user
 
   const article = await db.collection('articles').findOne({ articleId: name })
-  console.log("Article from db",article)
-
 
   try {
     const article = await db.collection('articles').findOne({ articleId: name })
@@ -122,12 +119,9 @@ app.put('/api/articles/:name/upvote', async (req, res) => {
       return res.status(404).send('That article does not exist');
     }
 
-    console.log("Article from db",article)
 
     const upvoteIdsOfArticles = article.upvoteIds || []
-    console.log("upvoteIdsOfArticles", upvoteIdsOfArticles)
     const canUpvote = uid && !upvoteIdsOfArticles.includes(uid)
-    console.log("canUpvote",canUpvote)
 
     if (canUpvote) {
       await db.collection('articles').updateOne(
@@ -146,7 +140,7 @@ app.put('/api/articles/:name/upvote', async (req, res) => {
       res.status(400).send('You have already upvoted this article'); // Change status code to 400
     }
  } catch (error) {
-  console.error('Error upvoting article:', error);
+    console.error('Error upvoting article:', error);
     res.status(500).send('Internal Server Error');
  }
 })

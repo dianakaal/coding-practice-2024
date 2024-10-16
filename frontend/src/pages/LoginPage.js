@@ -13,11 +13,9 @@ const LoginPage = () => {
         try {
             // Authenticate with Firebase
             const userCredential = await signInWithEmailAndPassword(getAuth(), email, password)
-            console.log("Result of logging in: ", userCredential)
             
             // Get the ID token for the authenticated user
             const idToken = await userCredential.user.getIdToken()
-            console.log("ID Token of signed in user: ", idToken)
 
             // Store the token in localStorage
             localStorage.setItem('authToken', idToken)
