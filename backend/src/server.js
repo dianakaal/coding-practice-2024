@@ -10,6 +10,7 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
+// credentials.json file is used with Google Cloud
 const credentials = JSON.parse(
   fs.readFileSync('./credentials.json')
 )
