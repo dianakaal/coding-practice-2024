@@ -69,6 +69,11 @@ Type `db.articles.insertOne({articleId:"rock-paper",upvotes:0,comments:[]})`
 
 Type `db.articles.insertOne({articleId:"future-species",upvotes:0,comments:[]})`
 
+Type `db.articles.updateMany(
+  { upvoteIds: { $exists: false } }, // Find articles without upvoteIds
+  { $set: { upvoteIds: [] } } // Set upvoteIds to an empty array
+)`
+
 You will know these commands were successful if you see output after each command that has "acknowledged: true" words in it.
 
 Check all the data in the local database by typing `db.articles.find({}).pretty()`
