@@ -102,21 +102,27 @@ app.get('/articles', (res) => {
   }
 });
 
-// load information about a given article from MongoDB
+// Load information about a given article from MongoDB
 app.get('/api/articles/:name', async (req, res) => {
-  const {name} = req.params
-  const { uid } = req.user
+  const { name } = req.params;
+  const { uid } = req.user;
 
-  const article = await db.collection('articles').findOne({ name })
+  try {
+      const article = await db.collection('articles').findOne({ articleId: name });
 
-  if (article) {
-    const upvoteIdsOfArticles = article.upvoteIds || []
-    article.canUpvote = uid && !upvoteIdsOfArticles.includes(uid)
-    res.json(article)
-  } else {
-    res.sendStatus(404)
+      if (article) {
+          const upvoteIdsOfArticles = article.upvoteIds || [];
+          article.canUpvote = uid && !upvoteIdsOfArticles.includes(uid);
+          res.json(article); // Send the article as a JSON response
+      } else {
+          res.status(404).json({ message: "Article not found" }); // Send JSON with 404 status
+      }
+  } catch (error) {
+      console.error("Error fetching article:", error);
+      res.status(500).json({ message: "Internal server error" }); // Handle any other errors
   }
-})
+});
+
 
 app.use((req, res, next) => {
   if (req.user) {
