@@ -21,10 +21,10 @@ const articles = [
             `Rock crushes scissors.`,
         ]
     },     {
-        name: 'Next',
-        title: 'Title',
+        name: 'future-species',
+        title: 'Merging with ..',
         content: [
-            `Will put here once I know what it is`,
+            `If you could merge with another species, what species would you pick?`,
         ]
     },  
 ];
