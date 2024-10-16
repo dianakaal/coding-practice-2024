@@ -40,7 +40,9 @@ Authentication is done with Firebase
 
 # Troubleshooting
 
-## Local Mongo aborts upon first run
+## Local Mongo issues:
+
+### Local Mongo aborts upon first run
 
 Delete all the files inside backend/database-data directory. Do not delete the "database-data" folder.
 
@@ -50,7 +52,35 @@ If you had the backend server running and it is now displaying `[nodemon] app cr
 
 You should see the last output as `Example app listening on port 8000`
 
-## Why Proxying is Needed for Local Development
+### Errors from axios saying article is not found
+
+Your local mongo data might've been deleted.
+
+In the local database should be the article names as well as upvotes and comments.
+
+Reinsert the sample data like this:
+
+From the terminal log into local mongo with command `mongosh`
+
+You should get connected and you will see output like Current Mongosh Lig ID: ....
+
+Type `use react-blog-db`
+
+Type `db.articles.insertOne({articleId:"lizards",upvotes:0,comments:[]})`
+
+Type `db.articles.insertOne({articleId:"rock-paper",upvotes:0,comments:[]})`
+
+Type `db.articles.insertOne({articleId:"future-species",upvotes:0,comments:[]})`
+
+You will know these commands were successful if you see output after each command that has "acknowledged: true" words in it.
+
+Check all the data in the local database by typing `db.articles.find({}).pretty()`
+
+Exit from local Mongo database with command `exit`
+
+## Wondering about why there is need to proxy
+
+### Why Proxying is Needed for Local Development
 
 When the React app (running on http://localhost:3000/) makes a request to an API endpoint (e.g., /api/articles/lizards), it will be blocked by the browser due to CORS (Cross-Origin Resource Sharing) rules, because the frontend and backend are on different ports (3000 vs. 8000).
 
@@ -58,7 +88,7 @@ The proxy defined in package.json of Frontend allows you to bypass CORS issues b
 
 So for local development it's important to keep the proxy configuration.
 
-## Why the App Still Opens on http://localhost:3000/
+### Why the App Still Opens on http://localhost:3000/
 
 Your React app will always start on http://localhost:3000/ because that's the default port for the development server (npm start).
 
