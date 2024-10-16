@@ -50,7 +50,6 @@ app.use(async (req, res, next) => {
 
   // If the user is not logged in, allow them to browse anonymously
   req.user = req.user || {};
-  console.log("If this is an empty object then the user is not logged in: ", req.user);
 
   next();
 });

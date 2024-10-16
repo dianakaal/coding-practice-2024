@@ -9,7 +9,6 @@ const useAuthState = () => {
         const unsubscribe = onAuthStateChanged(getAuth(), user => {
             setUser(user)
             setIsAuthLoading(false)
-            console.log('Current user is:', user); // Log the user state
         })
 
         //will be called when user is moved away from the DOM
