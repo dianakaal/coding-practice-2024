@@ -32,6 +32,7 @@ Authentication is done with Firebase
 - Upvoting on an article shows that you already upvoted, then you did not.
 - Add a "logged out" page
 - Ensure that the token being sent from the frontend is still valid.
+- use React Context to store the token during the session and LocalStorage to persist it across page reloads
 - 
 
 
