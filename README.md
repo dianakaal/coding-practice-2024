@@ -38,6 +38,52 @@ Authentication is done with Firebase
 11.
 12.
 
+# Troubleshooting
+
+## Local Mongo aborts upon first run
+
+Delete all the files inside backend/database-data directory. Do not delete the "database-data" folder.
+
+Go in the terminal to the backend folder and run command `npm run mongo`.
+
+If you had the backend server running and it is now displaying `[nodemon] app crashed - waiting for file changes before starting...` then stop it with CTRL+C and restart it with `npm run dev`
+
+You should see the last output as `Example app listening on port 8000`
+
+## Why Proxying is Needed for Local Development
+
+When the React app (running on http://localhost:3000/) makes a request to an API endpoint (e.g., /api/articles/lizards), it will be blocked by the browser due to CORS (Cross-Origin Resource Sharing) rules, because the frontend and backend are on different ports (3000 vs. 8000).
+
+The proxy defined in package.json of Frontend allows you to bypass CORS issues by transparently forwarding these requests to the backend (http://localhost:8000/).
+
+So for local development it's important to keep the proxy configuration.
+
+## Why the App Still Opens on http://localhost:3000/
+
+Your React app will always start on http://localhost:3000/ because that's the default port for the development server (npm start).
+
+The proxy is working in the background to forward any API requests to http://localhost:8000/. You still need to access the app on http://localhost:3000/ to view the frontend and interact with it.
+
+The proxy only affects API calls, not where your frontend is served.
+
+# Developing locally
+
+Keep the proxy in package.json of Frontend to handle API requests while developing locally.
+
+Run below commands in appropriate folders:
+- Start up the Frontend on localhost:3000 `npm start` from frontend folder.
+- Start up the local Mongo database `npm run mongo` from backend folder.
+- Start up the Backend on localhost:8000 `npm run dev` from backend folder.
+
+
+Access your app via localhost:3000/ to develop and test the frontend.
+
+Your API requests from the React app will be proxied to the backend on localhost:8000 as needed.
+
+Watch the terminal for errors and the browser's inspector for erros.
+
+
+
 
 
 
