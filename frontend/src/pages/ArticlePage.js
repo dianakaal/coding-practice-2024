@@ -70,10 +70,12 @@ const ArticlePage = () => {
     return (
         <>
         <h1>{article.title}</h1>
-        <p>This is the content of the article, not yet sourced from a database.</p>
+        <p>This is the content of the article, not yet sourced from a database, but the upvotes and comments are!</p>
+        <div className="article-content-section">
         {article.content.map((paragraph, i) => (
             <p key={i}>{paragraph}</p>
         ))}
+        </div>
         <div className="upvotes-section">
             {
             user

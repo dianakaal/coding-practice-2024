@@ -99,8 +99,14 @@ input, textarea {
 }
 
 #upvotes-section button, p {
-  display: inline-block;
+  display: block;
   margin-right: 16px;
+}
+
+.article-content-section {
+  border: 1px dotted grey;
+  padding: 10px;
+  margin-bottom: 5px;
 }
 
 .comment {
