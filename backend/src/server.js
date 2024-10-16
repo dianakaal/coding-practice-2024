@@ -33,7 +33,6 @@ app.get(/^(?!\/api).+/, (req, res) => {
 
 app.use(async (req, res, next) => {
   const authToken = req.headers.authorization; // Use authorization header with Bearer token pattern
-  console.log("The request headers were: ", req.headers);
 
   if (authToken && authToken.startsWith("Bearer ")) {
     const token = authToken.split("Bearer ")[1]; // Extract the token part after 'Bearer '
