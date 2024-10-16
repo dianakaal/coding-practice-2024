@@ -58,7 +58,6 @@ const ArticlePage = () => {
             <p key={i}>{paragraph}</p>
         ))}
         <div className="upvotes-section">
-            {console.log("Before the upvote button, the user is: ",user)}
             {
             user
                 ? 
