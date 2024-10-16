@@ -19,6 +19,9 @@ const LoginPage = () => {
             const idToken = await userCredential.user.getIdToken()
             console.log("ID Token of signed in user: ", idToken)
 
+            // Store the token in localStorage
+            localStorage.setItem('authToken', idToken)
+
             // Send a request with the id token (for protected routes or any backend interaction)
             const response = await fetch('/articles', {
                 method: 'GET',
