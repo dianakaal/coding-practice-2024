@@ -33,7 +33,7 @@ Authentication is done with Firebase
 6. Remove comments used for debugging authentication.
 7. Opening an article page has an error, which can be removed, but should not be there.
 8. There is an error when commenting upon an article.
-9.
+9. The data from article-content.js should be stored in the database instead of a file.
 10.
 11.
 12.
