@@ -8,10 +8,12 @@ const NavBar = () => {
 
     const handleLogout = async () => {
         try {
-           await signOut(getAuth());
-           navigate('/');
+            await signOut(getAuth())
+            // Clear the token from local storage
+            localStorage.removeItem('authToken')
+            navigate('/');
         } catch (error) {
-           console.error("An error occurred while signing out:", error);
+            console.error("An error occurred while signing out:", error);
         }
      }
 
