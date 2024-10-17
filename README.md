@@ -115,6 +115,18 @@ Your API requests from the React app will be proxied to the backend on localhost
 
 Watch the terminal for errors or the browser's inspector for erros.
 
+## Creating new users for the app so authentication can be tested
+
+You would need to create an account in Firebase console (https://console.firebase.google.com/)
+
+Create a web app project and copy the code provided to you into a file called `credentials.json` which will be in the directory called backend
+
+From tab called Authentication, you will need to create users along with their passwords
+
+These users should be able to sign into this app
+
+Do not commit the credentials file to git!
+
 
 
 
