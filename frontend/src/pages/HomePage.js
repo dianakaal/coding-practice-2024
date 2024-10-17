@@ -2,24 +2,13 @@ const HomePage = () => {
     return (
         <>
         <h1>Welcome!</h1>
-        <p>This is a practice project</p>
+        <p>This is a practice project to refresh React, Express, persistence, and authentication.</p>
         <br/>
-        <p>This project includes:</p>
-        <ul>
-            <li>Frontend</li>
-            <dd>- A React application</dd>
-            <li>Backend</li>
-            <dd>- A server built with Node.js and Express</dd>
-            <dd>- Firebase Authentication used for securing routes</dd>
-            <dd>- Custom `authMiddleware` verifies JWT tokens from the client</dd>
-            <li>Persistence of Data</li>
-            <dd>- Some data is stored locally within the project</dd>
-            <dd>- Other data is persisted in MongoDB</dd>
-            <li>Authentication</li>
-            <dd>- User session tokens are stored in local storage on the frontend</dd>
-            <dd>- Tokens are sent in the `Authorization` header for protected route requests</dd>
-            <dd>- The `authMiddleware` on the backend verifies tokens and ensures secure access</dd>
-        </ul>
+        <p>Please look at the Readme to learn how to run this locally.</p>
+        <p>You may also look at the commits to understand the process of development from scratch to a functional app.</p>
+        <p>Not all the commits are impeccable because a lot of debugging was needed to be done at various stages.</p>
+        <p>It would've been smarter to utitilize branches in this repo, but time constraints caused me not to.</p>
+        <p>I also learned how to deploy this app to MongoCloud, but decided not to include all the files needed for this in the repo.</p>
         </>
     );
 }
