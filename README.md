@@ -2,10 +2,11 @@
 
 You can find the original course in LinkedIn Learning.
 
-The name of the course is "React: Creating and Hosting a Full-Stack Site"
+The name of the course is "React: Creating and Hosting a Full-Stack Site".
+
 It was found on this url: https://www.linkedin.com/learning/react-creating-and-hosting-a-full-stack-site-15153869
 
-This repository is not an absolute copy of the tutorial's teachings, but pretty close to it. It is just for practice after all.
+This project is not an absolute copy of the tutorial's teachings, but pretty close to it. It is just for practice after all.
 
 A lot of debugging and fixing has been done during the course of this project. The commit messages will explain this in, hopefully, a clearer way.
 
