@@ -113,7 +113,7 @@ Access your app via localhost:3000/ to develop and test the frontend.
 
 Your API requests from the React app will be proxied to the backend on localhost:8000 as needed.
 
-Watch the terminal for errors and the browser's inspector for erros.
+Watch the terminal for errors or the browser's inspector for erros.
 
 
 
