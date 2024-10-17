@@ -63,6 +63,38 @@ Do not commit the credentials file to git!
   - This way user's session will become invalid after a certain time.
 - Use React Context to store the token during the session and LocalStorage to persist it across page reloads.
 - Allow a maximum of five comments by the same user.
+- Remove unneccessary files
+- Add Github workflows
+  - Integrate your tests into a Continuous Integration/Continuous Deployment (CI/CD) pipeline to automatically run tests on every push or pull request.
+  - Implement Continuous Deployment (CD) workflows to automatically deploy your application to production after successful test runs, streamlining the release process.
+- Create tests, for example:
+  - React components
+    - Unit Tests: Use tools like Jest and React Testing Library to write unit tests for each component, ensuring they render correctly and respond to props.
+    - Snapshot Tests: Capture the rendered output of components and ensure they don’t change unexpectedly over time.
+  - Form validation
+    - Write integration tests to verify that API calls are made correctly from components.
+    - Mock API responses to test how components handle various scenarios (success, error, loading states).
+  - API integration
+    - Write integration tests to verify that API calls are made correctly from components.
+    - Mock API responses to test how components handle various scenarios (success, error, loading states).
+  - State management
+    - If using context or a state management library (like Redux), test actions, reducers, and context providers to ensure state updates as expected.
+  - Routing
+    - Test that routing works correctly and the appropriate components render based on URL changes.
+  - User interaction
+    - Simulate user interactions (clicks, form submissions) and verify the expected outcomes (state changes, UI updates).
+  - Accessibility
+    - Use tools like Axe or react-axe to test your app for accessibility issues.
+  - End to end testing
+    - Implement end-to-end tests using Cypress or Selenium to simulate user journeys through your app.
+  - Performance Tests:
+    - Use tools like Lighthouse to test and measure performance metrics (e.g., load time, responsiveness) and ensure they meet your app's performance goals.
+  - Security Tests:
+    - Check for vulnerabilities like XSS, CSRF, and ensure that user input is sanitized and validated.
+  - Cross-Browser Testing:
+    - Ensure that your app functions correctly across different browsers and devices.
+  - Deployment Checks:
+    - Create tests that run after deployment to ensure that everything is functioning as expected in the production environment.
 
 # Troubleshooting
 
