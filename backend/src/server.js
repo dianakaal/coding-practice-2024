@@ -110,8 +110,6 @@ app.put('/api/articles/:name/upvote', async (req, res) => {
   const { name } = req.params
   const { uid } = req.user
 
-  const article = await db.collection('articles').findOne({ articleId: name })
-
   try {
     const article = await db.collection('articles').findOne({ articleId: name })
 
